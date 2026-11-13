@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>广告片展示网站</title>
+  <meta name="description" content="广告片展示网站：王歌词广告影像作品精选。">
+  <meta name="theme-color" content="#05060a">
+  <meta property="og:title" content="广告片展示网站">
+  <meta property="og:description" content="王歌词广告影像作品精选（广告片、短片与实验影像）。">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305060a'/%3E%3Cpath d='M18 20l14 28 14-28' fill='none' stroke='%2300d9ff' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#works">跳到作品</a>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="bg-fx" aria-hidden="true">
+    <span class="orb orb--cyan"></span>
+    <span class="orb orb--violet"></span>
+    <span class="orb orb--pink"></span>
+  </div>
+
+  <header class="site-head" id="siteHead">
+    <div class="site-head__inner">
+      <a class="brand" href="#top" aria-label="广告片展示网站 首页">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none"><path d="M6 8l10 18L26 8" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="brand__text">
+          <span class="brand__name">广告片展示网站</span>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="主导航">
+        <a class="nav__link" href="#works">作品</a>
+        <button class="nav__link nav__add" id="navAddBtn" type="button">＋ 添加作品</button>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-label="打开菜单" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="hero">
+      <div class="hero__bg" id="heroBg" aria-hidden="true"></div>
+      <div class="hero__inner">
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#works">
+            观看作品
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <a class="hero__scroll" href="#works" aria-label="向下滚动到作品">
+        <span>SCROLL</span>
+        <i aria-hidden="true"></i>
+      </a>
+    </section>
+
+    <!-- ================= WORKS ================= -->
+    <section class="works" id="works" tabindex="-1" aria-labelledby="worksTitle">
+      <div class="wrap">
+        <header class="section-head section-head--works">
+          <div class="section-head__top">
+            <div>
+              <p class="section-kicker"><span>01</span> WORKS</p>
+              <h2 class="section-title" id="worksTitle">作品</h2>
+            </div>
+            <button class="add-btn" id="openUploadBtn" type="button">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              添加作品
+            </button>
+          </div>
+          <p class="section-desc">点击任意作品进入放映模式，支持键盘 ← → 切换、Esc 退出。</p>
+        </header>
+
+        <div class="filters" id="filters" role="group" aria-label="按类型筛选作品"></div>
+
+        <div class="works-grid" id="worksGrid"></div>
+        <p class="works-empty" id="worksEmpty" hidden>这个分类下还没有作品。</p>
+      </div>
+    </section>
+
+    </main>
+
+  <footer class="site-foot">
+    <div class="wrap site-foot__inner">
+      <a href="#top" class="site-foot__top">回到顶部 ↑</a>
+    </div>
+  </footer>
+
+  <!-- ================= THEATER / PLAYER ================= -->
+  <div class="theater" id="theater" hidden>
+    <div class="theater__backdrop" data-close></div>
+
+    <div class="theater__shell" role="dialog" aria-modal="true" aria-labelledby="theaterTitle">
+      <header class="theater__top">
+        <p class="theater__count" id="theaterCount">01 / 01</p>
+        <button class="round-btn" id="theaterClose" type="button" aria-label="关闭放映（Esc）">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </header>
+
+      <div class="theater__stage">
+        <button class="nav-btn nav-btn--prev" id="prevBtn" type="button" aria-label="上一个作品">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <div class="player" id="playerWrap">
+          <video class="player__video" id="player" playsinline preload="metadata" aria-label="作品视频"></video>
+          <img class="player__image" id="playerImage" alt="" hidden>
+
+          <button class="player__big" id="bigPlay" type="button" aria-label="播放">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </button>
+
+          <div class="player__controls" id="playerControls">
+            <button class="ctrl" id="playBtn" type="button" aria-label="播放">
+              <svg class="ico-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+              <svg class="ico-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+            </button>
+            <span class="player__time"><span id="curTime">0:00</span><span class="player__slash">/</span><span id="durTime">0:00</span></span>
+            <input class="player__seek" id="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="播放进度" aria-valuemin="0" aria-valuemax="1000" aria-valuetext="0:00 / 0:00">
+            <button class="ctrl" id="muteBtn" type="button" aria-label="静音">
+              <svg class="ico-vol" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 010 7M19 6a8.5 8.5 0 010 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              <svg class="ico-mute" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4H4z" fill="currentColor"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <button class="ctrl" id="fsBtn" type="button" aria-label="全屏">
+              <svg class="ico-fs" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="ico-fs-exit" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <button class="nav-btn nav-btn--next" id="nextBtn" type="button" aria-label="下一个作品">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <footer class="theater__meta">
+        <div class="theater__heading">
+          <h2 id="theaterTitle" tabindex="-1">—</h2>
+          <p id="theaterSub">—</p>
+        </div>
+        <p class="theater__desc" id="theaterDesc"></p>
+      </footer>
+    </div>
+
+    <p class="sr-live" id="liveAnnounce" role="status" aria-live="polite" aria-atomic="true"></p>
+  </div>
+
+  <!-- ================= 添加作品 ================= -->
+  <div class="upload" id="uploadDialog" hidden>
+    <div class="upload__backdrop" data-upload-close></div>
+
+    <div class="upload__panel" role="dialog" aria-modal="true" aria-labelledby="uploadTitle">
+      <header class="upload__head">
+        <div>
+          <p class="section-kicker"><span>＋</span> UPLOAD</p>
+          <h2 class="upload__title" id="uploadTitle">添加新作品</h2>
+        </div>
+        <button class="round-btn" id="uploadClose" type="button" aria-label="关闭（Esc）">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </header>
+
+      <p class="upload__hint">选择视频或图片，浏览器会把它保存到站点的「待导入」文件夹；之后双击「导入新作品.bat」即可完成转码上架。</p>
+
+      <div class="upload__drop" id="uploadDrop" tabindex="0" role="button" aria-label="选择要添加的文件">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16V4m0 0L7 9m5-5l5 5M4 15v3a2 2 0 002 2h12a2 2 0 002-2v-3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p class="upload__drop-main">把文件拖到这里，或点击选择</p>
+        <p class="upload__drop-sub">支持 .mp4 .mov .m4v .webm .mkv .avi .mts .m2ts .wmv .flv .ts 及常见图片</p>
+        <input type="file" id="uploadInput" multiple hidden accept="video/*,image/*,.mp4,.mov,.m4v,.webm,.mkv,.avi,.mts,.m2ts,.wmv,.flv,.ts">
+      </div>
+
+      <ul class="upload__list" id="uploadList" hidden></ul>
+
+      <div class="upload__actions" id="uploadActions" hidden>
+        <button class="btn btn--primary" id="uploadSave" type="button">保存到「待导入」文件夹</button>
+        <p class="upload__status" id="uploadStatus" aria-live="polite"></p>
+      </div>
+
+      <p class="upload__fallback" id="uploadFallback" hidden>
+        当前浏览器不支持直接写入文件夹（建议用 Chrome / Edge 打开本站）。
+        请手动把文件放进网站目录的「待导入」文件夹，再双击「导入新作品.bat」。
+      </p>
+    </div>
+  </div>
+
+  <script src="./data/works-data.js" defer></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+# 待导入目录：用户放原始文件的地方，不入版本库
+待导入/
+
+# Node 运行时缓存
+node_modules/
+
+# 系统 / 编辑器
+.DS_Store
+Thumbs.db
+*.tmp
