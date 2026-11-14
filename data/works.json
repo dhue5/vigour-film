@@ -239,6 +239,27 @@
         "size": 59261662
       },
       "created": "2026-11-13T01:39:18"
+    },
+    {
+      "id": "wc3879e68d",
+      "title": "广告片 12",
+      "titleEn": "",
+      "category": "广告片",
+      "year": "2026",
+      "client": "",
+      "description": "",
+      "duration": 41.2,
+      "width": 992,
+      "height": 432,
+      "video": "media/video/wc3879e68d.mp4",
+      "preview": "media/preview/wc3879e68d.mp4",
+      "poster": "media/poster/wc3879e68d.jpg",
+      "thumb": "media/thumb/wc3879e68d.jpg",
+      "source": {
+        "name": "广告片12.mov",
+        "size": 21484799
+      },
+      "created": "2026-11-14T16:50:43"
     }
   ]
 }
